@@ -174,7 +174,7 @@ button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
 var $=function(s){return document.querySelector(s)};
 var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function esc(t){return String(t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-var NOMBRES=['Ana P.','Bruno S.','Camila R.','Diego M.','Elena S.','Felipe R.','Gabriela N.','Hugo C.','Isidora V.','Joaquín M.','Karla D.','Luis P.','TÚ'];
+var NOMBRES=['Ana P.','Bruno S.','Camila R.','Diego M.','Elena S.','Felipe R.','Gabriela N.','TÚ','Hugo C.','Isidora V.','Joaquín M.','Karla D.','Luis P.'];   // «TÚ» queda en la posición 8, más al centro
 var REPS=[6,12,24,6,12,24,48,6,12,24,48,64], TOTAL=12;
 var P=[], t0=0, motor=null, reinicio=null;
 var FIG='<svg class="fig" viewBox="0 0 16 24" aria-hidden="true"><circle cx="8" cy="4" r="2.6"/><path d="M8 7v9M8 10L3 6M8 10l5-4M8 16l-4 6M8 16l4 6"/></svg>';
@@ -183,7 +183,7 @@ function cum(r){var s=0;for(var k=0;k<r;k++)s+=REPS[k];return s}
 function cls(r){return r>=TOTAL?'fin':r>=7?'c3':r>=3?'c2':'c1'}
 function armar(){
   $('#cols').innerHTML=P.map(function(p){
-    var etiqueta=p.me?'TÚ':String(p.i+1).padStart(2,'0');
+    var etiqueta=p.me?'TÚ':String(p.num).padStart(2,'0');
     return '<div class="col c1'+(p.me?' me':'')+'"><div class="stack"><div class="seg s1"></div><div class="seg s2"></div><div class="seg s3"></div></div>'+
       '<div class="top"><span class="num">0</span><span class="tag">'+etiqueta+'</span>'+FIG+'</div><div class="idx">'+etiqueta+'</div><div class="nm">'+esc(p.me?'TÚ':p.n)+'</div></div>';
   }).join('');
@@ -201,10 +201,11 @@ function pintar(){
     tp.style.setProperty('--y',(p.r/TOTAL*100)+'%');
     tp.firstChild.textContent=cum(p.r);
   });
-  var total=P.reduce(function(a,p){return a+cum(p.r)},0), yo=P[P.length-1];
+  var total=P.reduce(function(a,p){return a+cum(p.r)},0), yo=yoMismo();
   $('#reps').textContent=total; $('#mias').textContent=cum(yo.r);
   $('#podio').innerHTML=ord.slice(0,3).map(function(p,k){return '<div class="pd'+(p.me?' yo':'')+'"><div class="k">'+(k+1)+'</div><div class="n">'+esc(p.me?'TÚ':p.n)+'</div><div class="e">'+(p.r>=TOTAL?'META':p.r+'/'+TOTAL+' RONDAS')+'</div></div>'}).join('');
 }
+function yoMismo(){return P.filter(function(p){return p.me})[0]}
 function todosListos(){return P.every(function(p){return p.r>=TOTAL})}
 function reloj(){
   if(todosListos()){$('#estado').textContent='CARRERA FINALIZADA';return}
@@ -226,14 +227,14 @@ function paso(){
   chequeaFin();
 }
 function sumar(){
-  var yo=P[P.length-1];
+  var yo=yoMismo();
   if(yo.r>=TOTAL){iniciar();return}                 // ya terminó: el botón pasa a «correr otra vez»
   var n=REPS[yo.r]; yo.r++; yo.last=Date.now(); pintar(); popup(yo.i,'+'+n+' REPS',true);
   if(navigator.vibrate){try{navigator.vibrate(18)}catch(e){}}
   if(yo.r>=TOTAL){
     var pos=P.slice().sort(function(a,b){return b.r-a.r||a.last-b.last}).indexOf(yo)+1;
     $('#sumar').textContent='CORRER OTRA VEZ'; $('#sumar').classList.add('fin');
-    setTimeout(function(){abrirHoja('🏁 META · PUESTO '+pos+' · '+$('#reloj').textContent)},900);
+    var tiempo=$('#reloj').textContent; setTimeout(function(){ if(yoMismo().r>=TOTAL) abrirHoja('🏁 META · PUESTO '+pos+' · '+tiempo) },900);
     chequeaFin();
   }
 }
@@ -242,7 +243,7 @@ function cerrarHoja(){$('#sheet').classList.remove('on')}
 function iniciar(){
   if(motor){clearTimeout(motor);motor=null}
   if(reinicio){clearTimeout(reinicio);reinicio=null}
-  P=NOMBRES.map(function(n,i){return {n:n,i:i,r:0,last:0,me:n==='TÚ'}}); t0=Date.now();
+  var contador=0; P=NOMBRES.map(function(n,i){var me=n==='TÚ'; if(!me)contador++; return {n:n,i:i,r:0,last:0,me:me,num:me?0:contador}}); t0=Date.now();
   armar(); pintar(); $('#reloj').textContent='00:00';
   var b=$('#sumar'); b.textContent='SUMAR REPETICIONES'; b.classList.remove('fin');
   (function ciclo(){ paso(); motor=setTimeout(ciclo,(reduce?1400:620)+Math.random()*(reduce?900:700)) })();
