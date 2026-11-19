@@ -1,13 +1,13 @@
 {
-  "name": "Lo que construí",
-  "short_name": "Lo que construí",
-  "description": "Cuatro experiencias que viven los socios de mi gym.",
+  "name": "HYROX interactivo",
+  "short_name": "HYROX en vivo",
+  "description": "Un HYROX interactivo en vivo. Suma tus repeticiones.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#0b2017",
-  "theme_color": "#0b2017",
+  "background_color": "#050b09",
+  "theme_color": "#050b09",
   "lang": "es",
   "icons": [
     {
