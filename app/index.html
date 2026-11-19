@@ -83,14 +83,17 @@ form.sg input::placeholder{color:#7f9a8a}
 .vote svg{width:14px;height:14px}
 
 /* hyrox */
-.hx-top{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-.hx-top .card{padding:12px 14px}
-.hx-top b{display:block;font-family:var(--disp);font-weight:400;font-size:34px;line-height:1;color:var(--lime);font-variant-numeric:tabular-nums}
-.hx-top span{font-size:10.5px;font-weight:800;letter-spacing:.16em;color:var(--mut)}
+.hx-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.hx-top .card{padding:10px 12px}
+.hx-top b{display:block;font-family:var(--disp);font-weight:400;font-size:30px;line-height:1;color:var(--lime);font-variant-numeric:tabular-nums}
+.hx-top span{font-size:9.5px;font-weight:800;letter-spacing:.14em;color:var(--mut)}
+.hr.me{background:rgba(188,255,159,.12);border-radius:10px}
+.hr.me .nm{color:var(--lime)}
+.sumar{width:100%;padding:20px;font-family:var(--disp);font-weight:400;font-size:30px;letter-spacing:.04em;border-radius:20px}
 .board{position:relative;background:#06130d;border:1px solid rgba(188,255,159,.16);border-radius:18px;padding:10px;overflow:hidden}
 .legend{display:flex;gap:14px;font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--mut);margin-bottom:8px;flex-wrap:wrap}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
-.rows{position:relative;height:calc(12 * 31px)}
+.rows{position:relative;height:calc(13 * 31px)}
 .hr{position:absolute;left:0;right:0;height:27px;display:flex;align-items:center;gap:8px;transition:transform .55s cubic-bezier(.2,.8,.2,1)}
 .hr .rk{flex:0 0 22px;font-family:var(--disp);font-size:16px;color:var(--mut);text-align:right}
 .hr .nm{flex:0 0 78px;font-size:12.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -98,7 +101,7 @@ form.sg input::placeholder{color:#7f9a8a}
 .hr .tr i{display:block;height:100%;border-radius:8px;transition:width .5s ease,background-color .3s}
 .hr .rn{flex:0 0 34px;font-size:12px;color:var(--mut);text-align:right;font-variant-numeric:tabular-nums}
 .hr.top1 .nm{color:var(--gold)}
-.hr.pop .tr i{filter:brightness(1.5)}
+.hr.pop .tr i{filter:brightness(1.25)}
 .hx-act{margin-top:12px}
 
 /* evaluación */
@@ -156,7 +159,7 @@ input[type=range]{width:100%;accent-color:#bcff9f;height:28px}
 
   <main>
     <!-- MÚSICA -->
-    <section class="panel on" id="p-musica" aria-labelledby="h-musica">
+    <section class="panel" id="p-musica" aria-labelledby="h-musica">
       <h2 id="h-musica">Lista de deseos</h2>
       <p class="sub">Los socios proponen la música de la próxima clase y votan. Gana la que más se pide.</p>
       <div class="next"><div><div class="k">SUENA PRIMERO EN LA CLASE</div><div class="t" id="nxT">—</div><div class="a" id="nxA"></div></div><div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></div>
@@ -165,12 +168,12 @@ input[type=range]{width:100%;accent-color:#bcff9f;height:28px}
     </section>
 
     <!-- HYROX -->
-    <section class="panel" id="p-hyrox" aria-labelledby="h-hyrox">
+    <section class="panel on" id="p-hyrox" aria-labelledby="h-hyrox">
       <h2 id="h-hyrox">HYROX en vivo</h2>
-      <p class="sub">Pantalla de carrera con participantes ficticios. Toca ESCANEAR o activa el modo en vivo.</p>
-      <div class="hx-top"><div class="card"><span>REPS EN LA SALA</span><b id="hxReps">0</b></div><div class="card"><span>TIEMPO</span><b id="hxClock">00:00</b></div></div>
-      <div class="board"><div class="legend"><span><i style="background:var(--blue)"></i>PRESS</span><span><i style="background:var(--orange)"></i>PULL</span><span><i style="background:var(--green)"></i>CURL</span><span><i style="background:var(--gold)"></i>META</span></div><div class="rows" id="hxRows"></div></div>
-      <div class="row hx-act"><button class="btn p" id="hxScan" type="button">ESCANEAR</button><button class="btn s" id="hxAuto" type="button" aria-pressed="false">Modo en vivo</button><button class="btn s" id="hxReset" type="button">Reiniciar</button></div>
+      <p class="sub">Eres el participante «TÚ». Toca SUMAR y cada toque te acerca a la meta; los demás ya están corriendo.</p>
+      <div class="hx-top"><div class="card"><span>REPS EN LA SALA</span><b id="hxReps">0</b></div><div class="card"><span>TUS REPS</span><b id="hxMine">0</b></div><div class="card"><span>TIEMPO</span><b id="hxClock">00:00</b></div></div>
+      <button class="btn p sumar" style="margin:0 0 12px" id="hxSumar" type="button">SUMAR REPETICIONES</button><div class="board"><div class="legend"><span><i style="background:var(--blue)"></i>PRESS</span><span><i style="background:var(--orange)"></i>PULL</span><span><i style="background:var(--green)"></i>CURL</span><span><i style="background:var(--gold)"></i>META</span></div><div class="rows" id="hxRows"></div></div>
+      <div class="row hx-act"><button class="btn s" id="hxAuto" type="button" aria-pressed="true">Pausar a los demás</button><button class="btn s" id="hxReset" type="button">Reiniciar</button></div>
     </section>
 
     <!-- EVALUACIÓN -->
@@ -206,8 +209,8 @@ input[type=range]{width:100%;accent-color:#bcff9f;height:28px}
 </div>
 
 <nav class="tabs" aria-label="Experiencias"><div class="in" role="tablist">
-  <button class="tab" role="tab" aria-selected="true" data-p="musica"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>Música</button>
-  <button class="tab" role="tab" aria-selected="false" data-p="hyrox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4M4 4h13l-2 4 2 4H4"/></svg>HYROX</button>
+    <button class="tab" role="tab" aria-selected="true" data-p="hyrox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4M4 4h13l-2 4 2 4H4"/></svg>HYROX</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="musica"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>Música</button>
   <button class="tab" role="tab" aria-selected="false" data-p="eval"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Evaluación</button>
   <button class="tab" role="tab" aria-selected="false" data-p="ruleta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/></svg>Ruleta</button>
 </div></nav>
@@ -227,7 +230,7 @@ function ir(p,noHash){
   $$('.tab').forEach(function(b){b.setAttribute('aria-selected',String(b.dataset.p===p))});
   if(!noHash){try{history.replaceState(null,'','#'+p)}catch(e){}}
   window.scrollTo({top:0,behavior:reduce?'auto':'smooth'});
-  if(p!=='hyrox')hxAutoOff();
+  if(p!=='hyrox'){if(auto){clearInterval(auto);auto=null}}else hxAutoOn();
 }
 $$('.tab').forEach(function(b){b.addEventListener('click',function(){ir(b.dataset.p)})});
 var h=(location.hash||'').slice(1); if(['musica','hyrox','eval','ruleta'].indexOf(h)>-1)ir(h,true);
@@ -262,10 +265,10 @@ $('#sgForm').addEventListener('submit',function(e){
 renderSongs();
 
 /* ---------- HYROX ---------- */
-var NOMBRES=['Ana P.','Bruno S.','Camila R.','Diego M.','Elena S.','Felipe R.','Gabriela N.','Hugo C.','Isidora V.','Joaquín M.','Karla D.','Luis P.'];
+var NOMBRES=['Ana P.','Bruno S.','Camila R.','Diego M.','Elena S.','Felipe R.','Gabriela N.','Hugo C.','Isidora V.','Joaquín M.','Karla D.','Luis P.','TÚ'];
 var REPS=[6,12,24,6,12,24,48,6,12,24,48,64], TOTAL=12;
 var hx=[], t0=0, clk=null, auto=null;
-function hxInit(){hx=NOMBRES.map(function(n,i){return {n:n,r:0,i:i,last:0}});t0=Date.now();hxRender()}
+function hxInit(){hx=NOMBRES.map(function(n,i){return {n:n,r:0,i:i,last:0,me:n==='TÚ'}});t0=Date.now();var c=$('#hxRows');c.innerHTML='';hxRender()}
 function color(r){return r>=TOTAL?'var(--gold)':r>=8?'var(--green)':r>=3?'var(--orange)':'var(--blue)'}
 function pintaClock(){var s=Math.floor((Date.now()-t0)/1000);$('#hxClock').textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
 function hxRender(pop){
@@ -274,30 +277,33 @@ function hxRender(pop){
   orden.forEach(function(p,pos){
     var el=cont.children[p.i];
     el.style.transform='translateY('+(pos*31)+'px)';
-    el.classList.toggle('top1',pos===0&&p.r>0);
+    el.classList.toggle('top1',pos===0&&p.r>0);el.classList.toggle('me',!!p.me);
     el.firstChild.textContent=(pos+1);
     var bar=el.querySelector('i'); bar.style.width=(p.r/TOTAL*100)+'%'; bar.style.backgroundColor=color(p.r);
     el.lastChild.textContent=p.r>=TOTAL?'META':p.r+'/'+TOTAL;
     el.classList.toggle('pop',pop===p.i);
   });
   var reps=hx.reduce(function(a,p){var s=0;for(var k=0;k<p.r;k++)s+=REPS[k];return a+s},0);
-  $('#hxReps').textContent=reps;
+  $('#hxReps').textContent=reps;var yo=hx.filter(function(p){return p.me})[0],mine=0;for(var k2=0;k2<yo.r;k2++)mine+=REPS[k2];$('#hxMine').textContent=mine;
   if(pop!=null)setTimeout(function(){var e=cont.children[pop];if(e)e.classList.remove('pop')},350);
 }
 function hxPaso(){
-  var libres=hx.filter(function(p){return p.r<TOTAL}); if(!libres.length){hxAutoOff();toast('¡Todos en la meta!');return}
+  var libres=hx.filter(function(p){return !p.me&&p.r<TOTAL}); if(!libres.length){return}
   var p=libres[Math.floor(Math.random()*libres.length)]; p.r++; p.last=Date.now(); hxRender(p.i);
 }
-function hxAutoOff(){if(auto){clearInterval(auto);auto=null}var b=$('#hxAuto');if(b){b.setAttribute('aria-pressed','false');b.textContent='Modo en vivo'}}
-$('#hxScan').addEventListener('click',hxPaso);
-$('#hxAuto').addEventListener('click',function(){
-  if(auto){hxAutoOff();return}
-  this.setAttribute('aria-pressed','true');this.textContent='Pausar';
-  auto=setInterval(hxPaso,reduce?1200:650);
-});
-$('#hxReset').addEventListener('click',function(){hxAutoOff();hxInit()});
+function hxSumar(){
+  var yo=hx.filter(function(p){return p.me})[0]; if(yo.r>=TOTAL){toast('Ya estás en la meta. Reinicia para correr de nuevo.');return}
+  var n=REPS[yo.r]; yo.r++; yo.last=Date.now(); hxRender(yo.i);
+  if(yo.r>=TOTAL){var pos=hx.slice().sort(function(a,b){return b.r-a.r||b.last-a.last}).indexOf(yo)+1;toast('🏁 ¡Llegaste a la meta! Puesto '+pos+' · '+$('#hxClock').textContent)}
+  else toast('+'+n+' repeticiones');
+}
+function hxAutoOn(){if(auto)return;var b=$('#hxAuto');b.setAttribute('aria-pressed','true');b.textContent='Pausar a los demás';auto=setInterval(hxPaso,reduce?1500:900)}
+function hxAutoOff(){if(auto){clearInterval(auto);auto=null}var b=$('#hxAuto');if(b){b.setAttribute('aria-pressed','false');b.textContent='Reanudar a los demás'}}
+$('#hxSumar').addEventListener('click',hxSumar);
+$('#hxAuto').addEventListener('click',function(){if(auto)hxAutoOff();else hxAutoOn()});
+$('#hxReset').addEventListener('click',function(){hxAutoOff();hxInit();hxAutoOn()});
 clk=setInterval(pintaClock,500);
-hxInit();
+hxInit();if($('#p-hyrox').classList.contains('on'))hxAutoOn();
 
 /* ---------- EVALUACIÓN ---------- */
 var ALT=168, EDAD_REAL=38;
