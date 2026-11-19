@@ -27,11 +27,11 @@ body{min-height:100vh;min-height:100dvh;overflow-x:hidden}
 
 /* ---------- fondo: video + muro de pantallas ---------- */
 .fondo{position:fixed;inset:0;z-index:0;overflow:hidden;background:var(--bg)}
-.fondo video.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.8;filter:saturate(1.15) contrast(1.05)}
-.muro{position:absolute;left:-55%;right:-55%;top:-30%;bottom:-30%;display:flex;gap:14px;transform:rotate(-9deg);opacity:.95}
+.fondo video.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9;filter:saturate(1.15) contrast(1.05)}
+.muro{position:absolute;left:-55%;right:-55%;top:-30%;bottom:-30%;display:flex;gap:14px;transform:rotate(-9deg);opacity:.34}
 .col{flex:1;display:flex;flex-direction:column;gap:14px;will-change:transform}
 .col .set{display:flex;flex-direction:column;gap:14px}
-.tile{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;border:1.5px solid rgba(188,255,159,.35);box-shadow:0 18px 40px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.4)}
+.tile{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;border:1.5px solid rgba(188,255,159,.22);box-shadow:0 18px 40px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.4)}
 .tile.v{aspect-ratio:16/9}
 .velo{position:absolute;inset:0;background:
   linear-gradient(180deg,rgba(11,32,23,.86) 0%,rgba(11,32,23,.10) 16%,rgba(11,32,23,.18) 62%,rgba(11,32,23,.92) 100%),
@@ -107,7 +107,7 @@ h1{font-family:var(--disp);font-weight:400;text-transform:uppercase;line-height:
         <span class="t"><b>@embajadordelobueno</b></span><span class="go" aria-hidden="true">↗</span>
       </a>
     </div>
-    <div class="punta a d4"><b>La lista de deseos es solo la punta.</b><br>Mientras tanto, ayúdanos a armar la música de la clase.<br><a href="https://segu-deseos-musicales.hermanndan.chatgpt.site" target="_blank" rel="noopener">Pide tu canción →</a></div>
+    <div class="punta a d4"><b>La lista de deseos es solo la punta.</b></div>
   </main>
 </div>
 <script>
