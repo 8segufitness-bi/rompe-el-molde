@@ -64,17 +64,6 @@ h1{font-family:var(--disp);font-weight:400;text-transform:uppercase;line-height:
 .try small{display:block;color:var(--mut);font-size:12.5px;font-weight:600;margin-top:2px}
 .try .go{margin-left:auto;font-size:22px;font-weight:800;color:var(--lime)}
 
-/* ---------- pantalla 2: así se suma cada repetición (video real, con nombres y rostros ocultos) ---------- */
-.baja{display:inline-block;margin-top:18px;font-weight:800;font-size:12px;letter-spacing:.2em;color:var(--lime);text-decoration:none;border-bottom:1px solid rgba(188,255,159,.5);padding-bottom:3px}
-.paso{position:relative;z-index:2;min-height:100vh;min-height:100dvh;display:flex;align-items:flex-end;overflow:hidden;background:#050b09}
-.pv{position:absolute;top:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover}
-.pv-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,11,9,.55) 0%,rgba(5,11,9,.05) 30%,rgba(5,11,9,.35) 55%,rgba(5,11,9,.94) 100%)}
-.pv-in{position:relative;z-index:1;width:100%;max-width:560px;margin:0 auto;padding:40px max(22px,env(safe-area-inset-left)) calc(34px + env(safe-area-inset-bottom)) max(22px,env(safe-area-inset-right))}
-.pv-in .pre{font-weight:800;font-size:13px;letter-spacing:.26em;color:var(--lime);margin-bottom:14px;text-shadow:0 2px 12px rgba(0,0,0,.8)}
-.pasos{list-style:none;padding:0;display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
-.pasos li{display:flex;align-items:center;gap:14px;font-family:var(--disp);font-size:clamp(26px,8vw,38px);text-transform:uppercase;line-height:1;letter-spacing:.01em;text-shadow:0 3px 22px rgba(0,0,0,.9)}
-.pasos li b{flex:0 0 38px;height:38px;border-radius:50%;background:var(--lime);color:#0b2017;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:400;text-shadow:none}
-@media (min-width:760px){.pv{left:50%;width:min(100%,56.25vh);transform:translateX(-50%)}.paso{background:rgba(5,11,9,.62)}}
 .punta{margin-top:26px;padding:16px 18px;border-radius:18px;background:rgba(11,32,23,.72);border:1px solid rgba(188,255,159,.2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--mut);font-size:15px;line-height:1.5}
 .punta b{color:var(--txt)}
 .punta a{display:inline-block;margin-top:8px;color:var(--lime);font-weight:700;text-decoration:underline;text-underline-offset:4px}
@@ -126,27 +115,9 @@ h1{font-family:var(--disp);font-weight:400;text-transform:uppercase;line-height:
         <span class="t"><b>@embajadordelobueno</b></span><span class="go" aria-hidden="true">↗</span>
       </a>
     </div>
-    <div class="punta a d4"><b>La lista de deseos es solo la punta.</b></div>
-    <a class="baja a d4" href="#paso">ASÍ SE SUMA CADA REPETICIÓN ↓</a>
+    <div class="punta a d4"><b>Eso es solo la punta del iceberg.</b></div>
   </main>
 </div>
-<section class="paso" id="paso" aria-label="Así se suma cada repetición">
-  <video class="pv" id="pv" muted loop playsinline preload="metadata" poster="pulsera-poster.jpg"><source src="pulsera.mp4" type="video/mp4"></video>
-  <div class="pv-veil"></div>
-  <div class="pv-in">
-    <div class="pre">ASÍ SE SUMA CADA REPETICIÓN</div>
-    <ol class="pasos">
-      <li><b>1</b><span>Acercas tu pulsera.</span></li>
-      <li><b>2</b><span>Aparece tu tarjeta.</span></li>
-      <li><b>3</b><span>Tu repetición sube en vivo.</span></li>
-    </ol>
-    <a class="try" href="app/"><span class="ic" aria-hidden="true">▶</span><span><b>PRUÉBALO AHORA</b><small>Suma repeticiones en un HYROX en vivo</small></span><span class="go" aria-hidden="true">→</span></a>
-  </div>
-</section>
-<script>
-(function(){var v=document.getElementById('pv');if(!v)return;var quieto=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(quieto||!('IntersectionObserver' in window))return;
-new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()})},{threshold:.35}).observe(v)})();
-</script>
 <script>
 (function(){
   var v=document.getElementById('bg');
